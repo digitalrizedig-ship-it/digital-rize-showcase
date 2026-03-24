@@ -110,10 +110,9 @@ const ServicesPage = () => {
                 ))}
               </div>
             )}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 pt-4 border-t border-muted/30">
-              <span className="text-xs font-bold text-primary">{isAr ? s.priceAr : s.priceEn}</span>
-              <button className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-colors">
-                {t("اطلب عرض سعر", "Request a Quote")}
+            <div className="mt-4 pt-4 border-t border-muted/30">
+              <button className="px-5 py-2 rounded-lg border border-primary text-primary text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors">
+                {t("اطلب عرض سعر ←", "Request a Quote ←")}
               </button>
             </div>
           </div>
