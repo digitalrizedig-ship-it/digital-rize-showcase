@@ -77,7 +77,7 @@ const ContactPage = () => {
             href="https://wa.me/201000000000"
             target="_blank"
             rel="noopener noreferrer"
-            className="block glass-card p-6 text-center hover:border-green-500/30"
+            className="block glass-card p-6 text-center hover:border-primary/30"
           >
             <div className="text-3xl mb-2">💬</div>
             <p className="font-bold text-sm mb-1">{t("تواصل عبر واتساب مباشرة", "Chat on WhatsApp directly")}</p>
