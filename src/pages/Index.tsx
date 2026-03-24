@@ -7,12 +7,12 @@ import PortfolioPage from "@/components/digitalrize/PortfolioPage";
 import PackagesPage from "@/components/digitalrize/PackagesPage";
 import ContactPage from "@/components/digitalrize/ContactPage";
 
-const pages: Record<string, React.FC> = {
-  home: HomePage,
-  services: ServicesPage,
-  portfolio: PortfolioPage,
-  packages: PackagesPage,
-  contact: ContactPage,
+const pages: Record<string, string> = {
+  home: "home",
+  services: "services",
+  portfolio: "portfolio",
+  packages: "packages",
+  contact: "contact",
 };
 
 const SiteContent = () => {
@@ -30,14 +30,22 @@ const SiteContent = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const PageComponent = pages[currentPage] || HomePage;
+  const renderPage = () => {
+    switch (currentPage) {
+      case "services": return <ServicesPage />;
+      case "portfolio": return <PortfolioPage />;
+      case "packages": return <PackagesPage onNavigate={navigate} />;
+      case "contact": return <ContactPage />;
+      default: return <HomePage />;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
       <Navbar currentPage={currentPage} onNavigate={navigate} />
 
       <main className="fade-in-section">
-        <PageComponent />
+        {renderPage()}
       </main>
 
       {/* Footer */}

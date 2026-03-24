@@ -10,8 +10,6 @@ const servicesData = [
     deliverablesAr: ["استراتيجية محتوى شهرية", "تصميم بوستات", "جدولة ونشر وإدارة التعليقات", "تقارير أسبوعية"],
     deliverablesEn: ["Monthly content strategy", "Post design", "Scheduling, publishing & comment management", "Weekly reports"],
     platforms: "Facebook · Instagram · TikTok · Snapchat · LinkedIn · X",
-    priceAr: "يبدأ من 18,000 ج.م / 1,800 ر.س شهرياً",
-    priceEn: "Starting from 18,000 EGP / 1,800 SAR monthly",
   },
   {
     icon: "🎯",
@@ -22,8 +20,6 @@ const servicesData = [
     deliverablesAr: ["إعداد الحملات", "استهداف دقيق", "A/B testing", "تحسين مستمر وتقارير تفصيلية"],
     deliverablesEn: ["Campaign setup", "Precise targeting", "A/B testing", "Continuous optimization & detailed reports"],
     platforms: "Meta Ads · Google Ads · TikTok Ads · Snapchat Ads",
-    priceAr: "يبدأ من 10,000 ج.م / 1,000 ر.س شهرياً",
-    priceEn: "Starting from 10,000 EGP / 1,000 SAR monthly",
   },
   {
     icon: "🔍",
@@ -34,8 +30,6 @@ const servicesData = [
     deliverablesAr: ["بحث كلمات مفتاحية", "تحسين on-page", "بناء روابط خلفية", "مقالات وتقرير ترتيب شهري"],
     deliverablesEn: ["Keyword research", "On-page optimization", "Backlink building", "Monthly articles & ranking report"],
     platforms: "",
-    priceAr: "يبدأ من 17,000 ج.م / 1,700 ر.س شهرياً",
-    priceEn: "Starting from 17,000 EGP / 1,700 SAR monthly",
   },
   {
     icon: "🎨",
@@ -46,8 +40,6 @@ const servicesData = [
     deliverablesAr: ["شعار احترافي", "دليل الهوية البصرية", "palette الألوان و typography", "تطبيقات الهوية"],
     deliverablesEn: ["Professional logo", "Brand guidelines", "Color palette & typography", "Identity applications"],
     platforms: "",
-    priceAr: "يبدأ من 15,000 ج.م / 1,500 ر.س",
-    priceEn: "Starting from 15,000 EGP / 1,500 SAR",
   },
   {
     icon: "💻",
@@ -58,8 +50,6 @@ const servicesData = [
     deliverablesAr: ["تصميم UI/UX", "تطوير responsive", "تكامل SEO", "لوحة تحكم وسرعة تحميل ممتازة"],
     deliverablesEn: ["UI/UX design", "Responsive development", "SEO integration", "Admin panel & excellent load speed"],
     platforms: "",
-    priceAr: "يبدأ من 25,000 ج.م / 2,500 ر.س",
-    priceEn: "Starting from 25,000 EGP / 2,500 SAR",
   },
   {
     icon: "🌟",
@@ -70,8 +60,6 @@ const servicesData = [
     deliverablesAr: ["اختيار المؤثرين", "عقود وتنسيق", "إنتاج المحتوى", "تتبع الأداء وتقرير نهائي"],
     deliverablesEn: ["Influencer selection", "Contracts & coordination", "Content production", "Performance tracking & final report"],
     platforms: "",
-    priceAr: "يبدأ من 12,000 ج.م / 1,200 ر.س",
-    priceEn: "Starting from 12,000 EGP / 1,200 SAR",
   },
 ];
 
@@ -110,10 +98,9 @@ const ServicesPage = () => {
                 ))}
               </div>
             )}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mt-4 pt-4 border-t border-muted/30">
-              <span className="text-xs font-bold text-primary">{isAr ? s.priceAr : s.priceEn}</span>
-              <button className="px-5 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-colors">
-                {t("اطلب عرض سعر", "Request a Quote")}
+            <div className="mt-4 pt-4 border-t border-muted/30">
+              <button className="px-5 py-2 rounded-lg border border-primary text-primary text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors">
+                {t("اطلب عرض سعر ←", "Request a Quote ←")}
               </button>
             </div>
           </div>
