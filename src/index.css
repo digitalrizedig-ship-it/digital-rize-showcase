@@ -119,24 +119,25 @@
   border-radius: 50%;
   filter: blur(80px);
   opacity: 0.4;
+  will-change: transform;
 }
 .mesh-gradient::before {
   width: 500px; height: 500px;
-  background: hsl(var(--mint) / 0.3);
+  background: rgba(78,207,181,0.12);
   top: -10%; right: -5%;
-  animation: blob1 20s ease-in-out infinite;
+  animation: blob1 12s ease-in-out infinite;
 }
 .mesh-gradient::after {
   width: 400px; height: 400px;
-  background: hsl(var(--purple-glow) / 0.25);
+  background: rgba(108,99,255,0.10);
   bottom: -10%; left: -5%;
-  animation: blob2 25s ease-in-out infinite;
+  animation: blob2 16s ease-in-out infinite;
 }
 .mesh-gradient .blob-3 {
   width: 350px; height: 350px;
-  background: hsl(var(--mint) / 0.15);
+  background: rgba(78,207,181,0.08);
   top: 40%; left: 40%;
-  animation: blob3 22s ease-in-out infinite;
+  animation: blob3 20s ease-in-out infinite;
 }
 
 /* Scroll progress bar */
@@ -148,16 +149,29 @@
   background: linear-gradient(90deg, hsl(var(--mint)), hsl(var(--purple-glow)));
   z-index: 9999;
   transition: width 0.1s linear;
+  box-shadow: 0 0 8px hsl(var(--mint) / 0.4);
 }
 
-/* WhatsApp pulse */
-@keyframes wa-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-  70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+/* WhatsApp button with double ripple */
+.wa-btn {
+  position: relative;
 }
-.wa-pulse {
-  animation: wa-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.wa-btn::before,
+.wa-btn::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.4);
+  animation: wa-ripple 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+.wa-btn::after {
+  animation-delay: 1.25s;
+}
+
+@keyframes wa-ripple {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
 }
 
 /* Scroll arrow bounce */
@@ -182,4 +196,92 @@
 .mint-glow {
   border: 2px solid hsl(var(--mint));
   box-shadow: 0 0 30px hsl(var(--mint) / 0.2), inset 0 0 30px hsl(var(--mint) / 0.05);
+}
+
+/* Button shine sweep */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  left: 120%;
+}
+
+/* Testimonial progress bar animation */
+@keyframes testimonialProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Tilt card base */
+.tilt-card {
+  will-change: transform;
+}
+
+/* Custom cursor - desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: hsl(var(--mint));
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.05s linear;
+    mix-blend-mode: difference;
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1.5px solid hsl(var(--mint) / 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition: transform 0.15s ease-out, width 0.2s ease, height 0.2s ease, margin 0.2s ease;
+  }
+  .custom-cursor-ring.expanded {
+    width: 56px;
+    height: 56px;
+    margin-left: -12px;
+    margin-top: -12px;
+  }
+}
+
+/* Animate fade in */
+@keyframes animateFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+  animation: animateFadeIn 0.3s ease-out forwards;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scroll-arrow,
+  .wa-btn::before,
+  .wa-btn::after,
+  .mesh-gradient::before,
+  .mesh-gradient::after,
+  .mesh-gradient .blob-3 {
+    animation: none !important;
+  }
 }
