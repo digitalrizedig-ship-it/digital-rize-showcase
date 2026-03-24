@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLang } from "@/contexts/LanguageContext";
+import SocialIcons from "./SocialIcons";
 
 const ContactPage = () => {
   const { t, isAr } = useLang();
@@ -30,16 +31,16 @@ const ContactPage = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1.5">{t("الاسم الكامل", "Full Name")}</label>
-                <input required className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                <label htmlFor="contact-name" className="block text-sm font-medium mb-1.5">{t("الاسم الكامل", "Full Name")}</label>
+                <input id="contact-name" required className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">{t("اسم الشركة", "Company Name")}</label>
-                <input className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
+                <label htmlFor="contact-company" className="block text-sm font-medium mb-1.5">{t("اسم الشركة", "Company Name")}</label>
+                <input id="contact-company" className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary" />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">{t("نوع الخدمة", "Service Type")}</label>
-                <select required className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                <label htmlFor="contact-service" className="block text-sm font-medium mb-1.5">{t("نوع الخدمة", "Service Type")}</label>
+                <select id="contact-service" required className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary">
                   <option value="">{t("اختر...", "Select...")}</option>
                   <option>Social Media</option>
                   <option>Paid Ads</option>
@@ -51,8 +52,8 @@ const ContactPage = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">{t("الميزانية الشهرية", "Monthly Budget")}</label>
-                <select className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+                <label htmlFor="contact-budget" className="block text-sm font-medium mb-1.5">{t("الميزانية الشهرية", "Monthly Budget")}</label>
+                <select id="contact-budget" className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary">
                   <option value="">{t("اختر...", "Select...")}</option>
                   <option>{t("أقل من 20K ج.م", "Less than 20K EGP")}</option>
                   <option>20K - 50K</option>
@@ -61,8 +62,8 @@ const ContactPage = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1.5">{t("رسالتك", "Your Message")}</label>
-                <textarea rows={4} className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none" />
+                <label htmlFor="contact-message" className="block text-sm font-medium mb-1.5">{t("رسالتك", "Your Message")}</label>
+                <textarea id="contact-message" rows={4} className="w-full px-4 py-2.5 rounded-lg bg-muted border border-muted text-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary resize-none" />
               </div>
               <button type="submit" className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors">
                 {t("أرسل رسالتك", "Send Message")}
@@ -74,7 +75,7 @@ const ContactPage = () => {
         {/* Info */}
         <div className="space-y-6">
           <a
-            href="https://wa.me/201000000000"
+            href="https://wa.me/201124082613"
             target="_blank"
             rel="noopener noreferrer"
             className="block glass-card p-6 text-center hover:border-primary/30"
@@ -86,22 +87,22 @@ const ContactPage = () => {
 
           <div className="glass-static p-6 space-y-4 text-sm">
             <div className="flex items-start gap-3">
-              <span>📍</span>
+              <span>📞</span>
               <div>
-                <p className="font-bold">{t("مصر", "Egypt")}</p>
-                <p className="text-muted-foreground">{t("القاهرة، مصر الجديدة", "Cairo, Heliopolis")}</p>
+                <p className="font-bold">{t("الهاتف", "Phone")}</p>
+                <a href="tel:+201124082613" className="text-muted-foreground hover:text-primary transition-colors" dir="ltr">01124082613</a>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span>📍</span>
               <div>
-                <p className="font-bold">{t("السعودية", "Saudi Arabia")}</p>
-                <p className="text-muted-foreground">{t("الرياض، المملكة العربية السعودية", "Riyadh, KSA")}</p>
+                <p className="font-bold">{t("مصر", "Egypt")}</p>
+                <p className="text-muted-foreground">{t("القاهرة، مصر", "Cairo, Egypt")}</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <span>📧</span>
-              <p className="text-muted-foreground">info@digitalrize.agency</p>
+              <a href="mailto:info@digitalrize.agency" className="text-muted-foreground hover:text-primary transition-colors">info@digitalrize.agency</a>
             </div>
             <div className="flex items-start gap-3">
               <span>🕐</span>
@@ -118,10 +119,8 @@ const ContactPage = () => {
           </div>
 
           {/* Social */}
-          <div className="flex justify-center gap-4 text-sm text-muted-foreground">
-            {["Facebook", "Instagram", "LinkedIn", "TikTok", "X"].map((s) => (
-              <a key={s} href="#" className="hover:text-primary transition-colors">{s}</a>
-            ))}
+          <div className="flex justify-center">
+            <SocialIcons />
           </div>
         </div>
       </div>

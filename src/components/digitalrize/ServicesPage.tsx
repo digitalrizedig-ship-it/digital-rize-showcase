@@ -1,4 +1,5 @@
 import { useLang } from "@/contexts/LanguageContext";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const servicesData = [
   {
@@ -65,6 +66,7 @@ const servicesData = [
 
 const ServicesPage = () => {
   const { t, isAr } = useLang();
+  const reveal = useScrollReveal();
 
   return (
     <div className="container mx-auto px-4 pt-28 pb-20">
@@ -75,9 +77,12 @@ const ServicesPage = () => {
         <p className="text-muted-foreground max-w-xl mx-auto">{t("حلول تسويقية شاملة لكل احتياجات عملك", "Comprehensive marketing solutions for all your business needs")}</p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div
+        ref={reveal.ref}
+        className={`grid md:grid-cols-2 gap-8 transition-all duration-700 ${reveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      >
         {servicesData.map((s, i) => (
-          <div key={i} className="glass-card p-6 sm:p-8">
+          <div key={i} className="glass-card p-6 sm:p-8 tilt-card" style={{ transitionDelay: `${i * 100}ms` }}>
             <div className="flex items-center gap-3 mb-4">
               <span className="text-3xl">{s.icon}</span>
               <h2 className="text-xl font-bold">{isAr ? s.nameAr : s.nameEn}</h2>
@@ -99,7 +104,7 @@ const ServicesPage = () => {
               </div>
             )}
             <div className="mt-4 pt-4 border-t border-muted/30">
-              <button className="px-5 py-2 rounded-lg border border-primary text-primary text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-colors">
+              <button className="px-5 py-2 rounded-lg border border-primary text-primary text-xs font-bold hover:bg-primary hover:text-primary-foreground transition-all duration-200 btn-shine hover:-translate-y-0.5 active:scale-[0.98]">
                 {t("اطلب عرض سعر ←", "Request a Quote ←")}
               </button>
             </div>

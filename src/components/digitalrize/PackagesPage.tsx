@@ -1,4 +1,5 @@
 import { useLang } from "@/contexts/LanguageContext";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const packages = [
   {
@@ -103,6 +104,9 @@ interface PackagesPageProps {
 
 const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
   const { t, isAr } = useLang();
+  const cardsReveal = useScrollReveal();
+  const tableReveal = useScrollReveal();
+  const quoteReveal = useScrollReveal();
 
   const renderCell = (val: string | { ar: string; en: string }) => {
     if (typeof val === "string") return val;
@@ -125,15 +129,18 @@ const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
       </div>
 
       {/* Pricing Cards */}
-      <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
+      <div
+        ref={cardsReveal.ref}
+        className={`grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16 transition-all duration-700 ${cardsReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      >
         {packages.map((pkg, i) => (
           <div
             key={i}
-            className={`glass-card p-6 sm:p-8 flex flex-col relative ${
+            className={`glass-card p-6 sm:p-8 flex flex-col relative tilt-card ${
               pkg.highlighted ? "mint-glow scale-[1.03]" : ""
             }`}
+            style={{ transitionDelay: `${i * 120}ms` }}
           >
-            {/* Most Popular Badge */}
             {pkg.highlighted && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-primary text-primary-foreground text-xs font-bold">
                 {isAr ? pkg.badgeAr : pkg.badgeEn}
@@ -142,7 +149,6 @@ const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
 
             <h3 className="text-xl font-bold mb-1">{isAr ? pkg.nameAr : pkg.nameEn}</h3>
 
-            {/* Pill tag */}
             <span className="inline-block text-xs text-primary bg-primary/10 border border-primary/20 rounded-full px-3 py-1 mb-6 w-fit">
               {isAr ? pkg.pillAr : pkg.pillEn}
             </span>
@@ -157,7 +163,7 @@ const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
             </ul>
 
             <button
-              className={`w-full py-3 rounded-lg font-bold text-sm transition-colors ${
+              className={`w-full py-3 rounded-lg font-bold text-sm transition-all duration-200 btn-shine hover:-translate-y-0.5 active:scale-[0.98] ${
                 pkg.highlighted
                   ? "bg-primary text-primary-foreground hover:bg-primary/90"
                   : "border border-primary text-primary hover:bg-primary hover:text-primary-foreground"
@@ -170,7 +176,10 @@ const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
       </div>
 
       {/* Comparison Table */}
-      <div className="max-w-4xl mx-auto mb-16">
+      <div
+        ref={tableReveal.ref}
+        className={`max-w-4xl mx-auto mb-16 transition-all duration-700 ${tableReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      >
         <h2 className="text-xl font-bold text-center mb-6">
           {t("مقارنة الباقات", "Compare Packages")}
         </h2>
@@ -203,7 +212,10 @@ const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
       </div>
 
       {/* Custom Quote Strip */}
-      <div className="rounded-2xl p-8 sm:p-12 text-center bg-gradient-to-r from-primary/20 to-background border border-primary/20">
+      <div
+        ref={quoteReveal.ref}
+        className={`rounded-2xl p-8 sm:p-12 text-center bg-gradient-to-r from-primary/20 to-background border border-primary/20 transition-all duration-700 ${quoteReveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      >
         <h3 className="text-2xl font-black mb-2">
           {t("مش لاقي الباقة المناسبة؟", "Can't find the right fit?")}
         </h3>
@@ -216,12 +228,12 @@ const PackagesPage = ({ onNavigate }: PackagesPageProps) => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={() => onNavigate?.("contact")}
-            className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-colors"
+            className="px-8 py-3 rounded-lg bg-primary text-primary-foreground font-bold text-sm hover:bg-primary/90 transition-all duration-200 btn-shine hover:-translate-y-0.5 active:scale-[0.98]"
           >
             {t("اطلب عرض مخصص", "Request Custom Quote")}
           </button>
           <a
-            href="https://wa.me/201000000000"
+            href="https://wa.me/201124082613"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3 rounded-lg font-bold text-sm transition-colors flex items-center gap-2"

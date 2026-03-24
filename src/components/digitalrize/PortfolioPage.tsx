@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLang } from "@/contexts/LanguageContext";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const projects = [
   {
@@ -70,6 +71,7 @@ const filters = [
 const PortfolioPage = () => {
   const { t, isAr } = useLang();
   const [activeFilter, setActiveFilter] = useState("all");
+  const reveal = useScrollReveal();
 
   const filtered = activeFilter === "all" ? projects : projects.filter((p) => p.category === activeFilter);
 
@@ -98,9 +100,12 @@ const PortfolioPage = () => {
         ))}
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        ref={reveal.ref}
+        className={`grid md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700 ${reveal.isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      >
         {filtered.map((p, i) => (
-          <div key={i} className="glass-card p-6 group">
+          <div key={i} className="glass-card p-6 group tilt-card" style={{ transitionDelay: `${i * 100}ms` }}>
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-lg font-bold">{isAr ? p.nameAr : p.nameEn}</h3>
               <span className="text-xl">{p.badge}</span>
